@@ -3,14 +3,11 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Plan; // Ruta correcta al modelo
+use App\Models\Central\Plan;
 
 class PlanSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run(): void
+    public function run()
     {
         Plan::create([
             'name' => 'Starter',

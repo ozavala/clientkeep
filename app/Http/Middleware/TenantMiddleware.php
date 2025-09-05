@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Stancl\Tenancy\Facades\Tenancy;
-use App\Models\Central\Tenant as CentralTenant;
+use App\Models\Central\Tenant; // ✅ Importar correctamente
 
 class TenantMiddleware
 {
@@ -18,15 +18,10 @@ class TenantMiddleware
         }
 
         // Buscar tenant por dominio
-        $tenant = CentralTenant::whereDomain($domain)->first();
+        $tenant = Tenant::whereDomain($domain)->first(); // ✅ Usar el nombre correcto
         
         if (!$tenant || !$tenant->status) {
             abort(404);
-        }
-
-        // Verificar suscripción activa
-        if (!$tenant->isActive()) {
-            // Para ahora, dejamos pasar
         }
 
         // Inicializar tenancy

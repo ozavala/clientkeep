@@ -7,8 +7,12 @@
             <div class="card">
                 <div class="card-header">{{ __('Bienvenido') }}</div>
                 <div class="card-body">
-                    <h2>{{ app('tenant')->name ?? 'Tu Empresa' }}</h2>
-                    <p>Plataforma de gestión empresarial ClientKeep.</p>
+                    @if(app()->bound('tenant'))
+                        <h2>{{ app('tenant')->name ?? 'Tu Empresa' }}</h2>
+                    @else
+                        <h2>ClientKeep - Tu Empresa</h2>
+                    @endif
+                    <p>Plataforma de gestión empresarial.</p>
                     <div class="mt-4">
                         @auth
                             <a href="{{ route('tenant.dashboard') }}" class="btn btn-primary">Dashboard</a>
