@@ -20,8 +20,13 @@ class TenantMiddleware
         // Buscar tenant por dominio
         $tenant = CentralTenant::whereDomain($domain)->first();
         
-        if (!$tenant) {
+        if (!$tenant || !$tenant->status) {
             abort(404);
+        }
+
+        // Verificar suscripción activa
+        if (!$tenant->isActive()) {
+            // Para ahora, dejamos pasar
         }
 
         // Inicializar tenancy

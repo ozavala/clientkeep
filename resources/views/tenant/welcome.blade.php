@@ -5,16 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Bienvenido a ClientKeep') }}</div>
+                <div class="card-header">{{ __('Bienvenido') }}</div>
                 <div class="card-body">
-                    <h2>ClientKeep - CRM/ERP SaaS</h2>
-                    <p>Gestiona tus clientes, ventas e inventario en una plataforma unificada.</p>
+                    <h2>{{ app('tenant')->name ?? 'Tu Empresa' }}</h2>
+                    <p>Plataforma de gestión empresarial ClientKeep.</p>
                     <div class="mt-4">
                         @auth
-                            <a href="{{ route('central.dashboard') }}" class="btn btn-primary">Dashboard</a>
+                            <a href="{{ route('tenant.dashboard') }}" class="btn btn-primary">Dashboard</a>
                         @else
                             <a href="{{ route('login') }}" class="btn btn-primary">Iniciar Sesión</a>
-                            <a href="{{ route('register') }}" class="btn btn-secondary">Registrarse</a>
                         @endauth
                     </div>
                 </div>
