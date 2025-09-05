@@ -3,6 +3,7 @@
 namespace App\Models\Central;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Central\Subscription;
 
 class Plan extends Model
 {

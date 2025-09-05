@@ -4,23 +4,20 @@ namespace App\Http\Controllers\Central;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Central\Tenant;
+use App\Models\Central\Plan;
+use App\Models\Central\Subscription;
 
 class DashboardController extends Controller
 {
-    /**
-     * Display the central dashboard.
-     *
-     * @return \Illuminate\View\View
-     */
     public function index()
     {
-        // Puedes agregar lógica para mostrar estadísticas del sistema
-        // como número de tenants, usuarios, etc.
-        
         $stats = [
-            'total_tenants' => \App\Models\Central\Tenant::count(),
-            'active_tenants' => \App\Models\Central\Tenant::where('status', true)->count(),
-            'total_plans' => \App\Models\Central\Plan::count(),
+            'total_tenants' => Tenant::count(),
+            'active_tenants' => Tenant::where('status', true)->count(),
+            'total_plans' => Plan::count(),
+            'active_subscriptions' => Subscription::where('status', 'active')->count(),
+            'trial_subscriptions' => Subscription::where('status', 'trial')->count(),
         ];
 
         return view('central.dashboard', compact('stats'));
